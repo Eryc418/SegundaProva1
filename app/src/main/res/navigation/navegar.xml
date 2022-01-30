@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navegar"
+    app:startDestination="@id/relatorioAlunos">
+
+    <fragment
+        android:id="@+id/relatorioAlunos"
+        android:name="com.example.alunos.fragments.relatorioAlunos"
+        android:label="fragment_relatorio_alunos"
+        tools:layout="@layout/fragment_relatorio_alunos" >
+        <action
+            android:id="@+id/action_relatorioAlunos_to_inserirAlunos"
+            app:destination="@id/inserirAlunos" />
+        <action
+            android:id="@+id/action_relatorioAlunos_to_buscar_matricula"
+            app:destination="@id/buscar_matricula" />
+    </fragment>
+    <fragment
+        android:id="@+id/inserirAlunos"
+        android:name="com.example.alunos.fragments.inserirAlunos"
+        android:label="fragment_inserir_alunos"
+        tools:layout="@layout/fragment_inserir_alunos" >
+        <action
+            android:id="@+id/action_inserirAlunos_to_relatorioAlunos"
+            app:destination="@id/relatorioAlunos" />
+    </fragment>
+    <fragment
+        android:id="@+id/buscar_matricula"
+        android:name="com.example.alunos.fragments.buscarMatricula"
+        android:label="fragment_buscar_matricula"
+        tools:layout="@layout/fragment_buscar_matricula" >
+        <action
+            android:id="@+id/action_buscar_matricula_to_relatorioAlunos"
+            app:destination="@id/relatorioAlunos" />
+        <argument
+            android:name="aluno"
+            app:argType="com.example.alunos.data.model.Aluno" />
+        <action
+            android:id="@+id/action_buscar_matricula_to_atualizarDadosAluno"
+            app:destination="@id/atualizarDadosAluno" />
+    </fragment>
+    <fragment
+        android:id="@+id/atualizarDadosAluno"
+        android:name="com.example.alunos.fragments.AtualizarDadosAluno"
+        android:label="fragment_atualizar_dados_aluno"
+        tools:layout="@layout/fragment_atualizar_dados_aluno" >
+        <argument
+            android:name="alunoAlterado"
+            app:argType="com.example.alunos.data.model.Aluno" />
+        <action
+            android:id="@+id/action_atualizarDadosAluno_to_relatorioAlunos"
+            app:destination="@id/relatorioAlunos" />
+    </fragment>
+</navigation>
