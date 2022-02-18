@@ -43,7 +43,7 @@
     </fragment>
     <fragment
         android:id="@+id/atualizarDadosAluno"
-        android:name="com.example.alunos.fragments.AtualizarDadosAluno"
+        android:name="com.example.alunos.ui.atualizar.AtualizarDadosAluno"
         android:label="fragment_atualizar_dados_aluno"
         tools:layout="@layout/fragment_atualizar_dados_aluno" >
         <argument

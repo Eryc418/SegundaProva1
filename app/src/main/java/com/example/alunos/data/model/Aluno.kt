@@ -14,4 +14,6 @@ data class Aluno (
     var periodo: Int,
     var cpf: String,
     var idade: Int
-        ): Parcelable
+        ): Parcelable{
+            constructor() :this (0L, "", "", 0, "", 0)
+        }

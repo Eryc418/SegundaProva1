@@ -1,23 +1,19 @@
-package com.example.alunos.fragments.adapter
+package com.example.alunos.ui.relatorio
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ListAdapter
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.alunos.R
 import com.example.alunos.data.model.Aluno
 import com.example.alunos.fragments.relatorioAlunosDirections
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class AdapterListarAluno: RecyclerView.Adapter<AdapterListarAluno.MyViewHolder>(){
 
-    private var listaAluno = emptyList<Aluno>()
+    var listaAluno = emptyList<Aluno>()
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 

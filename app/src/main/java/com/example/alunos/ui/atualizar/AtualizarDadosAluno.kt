@@ -1,4 +1,4 @@
-package com.example.alunos.fragments
+package com.example.alunos.ui.atualizar
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,27 +7,44 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.alunos.R
 import com.example.alunos.data.model.Aluno
-import com.example.alunos.data.viewmodel.AlunoViewModel
+import com.example.alunos.databinding.FragmentAtualizarDadosAlunoBinding
+import com.example.alunos.ui.buscar.BuscarViewModel
 
 class AtualizarDadosAluno : Fragment() {
     private val args by navArgs<AtualizarDadosAlunoArgs>()
-    lateinit var alunoViewModel: AlunoViewModel
-
+    private lateinit var atualizarViewModel: AtualizarViewModel
+    lateinit var binding: FragmentAtualizarDadosAlunoBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_atualizar_dados_aluno, container, false)
-        this.alunoViewModel = ViewModelProvider(this).get(AlunoViewModel::class.java)
 
-        alunoViewModel.buscarAluno(args.alunoAlterado.matricula).observe(viewLifecycleOwner, {
+        val factoryAtualizar = AtualizarViewModel.FactoryAtualizar(requireActivity().application, args.alunoAlterado.matricula)
+        atualizarViewModel = ViewModelProvider(this, factoryAtualizar).get(AtualizarViewModel::class.java)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_atualizar_dados_aluno, container, false)
+        binding.atualizarViewModel = atualizarViewModel
+        binding.lifecycleOwner = this
+
+        atualizarViewModel.update.observe(viewLifecycleOwner, {
+            if (it){
+                Toast.makeText(context, "Alterando...", Toast.LENGTH_LONG).show()
+                findNavController().navigate(R.id.action_atualizarDadosAluno_to_relatorioAlunos)
+                atualizarViewModel.atualizarAlunoCompleto()
+            }
+        })
+        // Inflate the layout for this fragment
+        /*
+        val view = inflater.inflate(R.layout.fragment_atualizar_dados_aluno, container, false)
+        this.atualizarViewModel = ViewModelProvider(this).get(AtualizarViewModel::class.java)
+
+        atualizarViewModel.buscarAluno(args.alunoAlterado.matricula).observe(viewLifecycleOwner, {
             view.findViewById<EditText>(R.id.editTextNome).setText(it.nome)
             view.findViewById<EditText>(R.id.editTextCurso).setText(it.curso)
             view.findViewById<EditText>(R.id.editTextPeriodo).setText(it.periodo.toString())
@@ -36,7 +53,7 @@ class AtualizarDadosAluno : Fragment() {
 
         })
         view.findViewById<Button>(R.id.button_SalvarAlteracao).setOnClickListener {
-            alunoViewModel.atualizarAluno(
+            atualizarViewModel.atualizarAluno(
                 Aluno(
                     args.alunoAlterado.matricula,
                     view.findViewById<EditText>(R.id.editTextNome).text.toString(),
@@ -49,6 +66,8 @@ class AtualizarDadosAluno : Fragment() {
             Toast.makeText(context, "Alterando...", Toast.LENGTH_LONG).show()
             findNavController().navigate(R.id.action_atualizarDadosAluno_to_relatorioAlunos)
         }
-        return view
+
+         */
+        return binding.root
     }
 }

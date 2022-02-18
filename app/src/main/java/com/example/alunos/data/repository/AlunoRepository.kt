@@ -4,9 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.alunos.data.dao.AlunoDAO
 import com.example.alunos.data.model.Aluno
+import kotlinx.coroutines.flow.Flow
 
 class AlunoRepository (private var alunoDAO: AlunoDAO){
-    val listaAlunos: LiveData<List<Aluno>> = alunoDAO.relatorioGeralAlunos()
+    val listaAlunos: Flow<List<Aluno>> = alunoDAO.relatorioGeralAlunos()
 
      fun inserirAluno(aluno: Aluno){
         alunoDAO.inserirAluno(aluno)
@@ -19,11 +20,11 @@ class AlunoRepository (private var alunoDAO: AlunoDAO){
         alunoDAO.atualizarDadosAluno(aluno)
     }
 
-    fun buscaAluno(matricula: Long): LiveData<Aluno>{
+    fun buscaAluno(matricula: Long): Aluno{
         return this.alunoDAO.buscarMatricula(matricula)
     }
 
-     fun deletaTodosAlunos(){
+    fun deletaTodosAlunos(){
         alunoDAO.deletarTodosALunos()
     }
 

@@ -4,14 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="atualizarViewModel"
+            type="com.example.alunos.ui.atualizar.AtualizarViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#51734D"
-        tools:context=".fragments.AtualizarDadosAluno">
+        tools:context=".ui.atualizar.AtualizarDadosAluno">
 
         <EditText
             android:id="@+id/editTextIdade"
@@ -21,6 +23,7 @@
             android:layout_marginEnd="24dp"
             android:autofillHints="Tittle"
             android:ems="10"
+            android:text="@={atualizarViewModel.aluno.idade + ``}"
             android:inputType="textPersonName"
             android:minHeight="48dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -39,6 +42,7 @@
             android:layout_marginEnd="24dp"
             android:autofillHints="Tittle"
             android:ems="10"
+            android:text="@={atualizarViewModel.aluno.cpf"
             android:inputType="textPersonName"
             android:minHeight="48dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -57,6 +61,7 @@
             android:layout_marginEnd="24dp"
             android:autofillHints="Tittle"
             android:ems="10"
+            android:text="@={atualizarViewModel.aluno.periodo + ``"
             android:inputType="textPersonName"
             android:minHeight="48dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -75,6 +80,7 @@
             android:layout_marginEnd="24dp"
             android:autofillHints="Tittle"
             android:ems="10"
+            android:text="@={atualizarViewModel.aluno.curso}"
             android:inputType="textPersonName"
             android:minHeight="48dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -178,6 +184,7 @@
             android:layout_marginEnd="24dp"
             android:autofillHints="Tittle"
             android:ems="10"
+            android:text="@={atualizarViewModel.aluno.nome}"
             android:inputType="textPersonName"
             android:minHeight="48dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -195,6 +202,7 @@
             android:layout_marginBottom="104dp"
             android:backgroundTint="@color/cardview_dark_background"
             android:text="SALVAR"
+            android:onClick="@{() -> atualizarViewModel.atualizarAluno()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.45"
